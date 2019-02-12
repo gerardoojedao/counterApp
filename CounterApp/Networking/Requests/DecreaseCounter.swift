@@ -20,6 +20,10 @@ public struct DecreaseCounter: APIRequest {
         return .post
     }
     
+    public var enconder: Encoder {
+        return .JSON
+    }
+    
     // Parameters
     private let id: String
     

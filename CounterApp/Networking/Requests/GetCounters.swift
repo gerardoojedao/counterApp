@@ -13,17 +13,14 @@ public struct GetCounters: APIRequest {
     
     // Notice how we create a composed resourceName
     public var resourceName: String {
-        return "counter"
+        return "counters"
     }
 
     public var method: HTTPMethod {
         return .get
     }
     
-    // Parameters
-    private let id: String
-    
-    public init(id: String) {
-        self.id = id
+    public var enconder: Encoder {
+        return .none
     }
 }

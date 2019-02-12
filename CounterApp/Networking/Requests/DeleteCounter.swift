@@ -20,6 +20,10 @@ public struct DeleteCounter: APIRequest {
         return .delete
     }
     
+    public var enconder: Encoder {
+        return .JSON
+    }
+    
     // Parameters
     private let id: String
     

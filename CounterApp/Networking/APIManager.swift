@@ -13,20 +13,16 @@ final public class ApiManager {
     private let baseEndpointUrl = URL(string: Constants.Network.baseUrl)!
     private let session = URLSession(configuration: .default)
     
-    public func send<T: APIRequest>(_ request: T, completion: @escaping ResultCallback<DataContainer<T.Response>>) {
+    public func send<T: APIRequest>(_ request: T, completion: @escaping ResultCallback<T.Response>) {
         let urlRequest = self.urlRequest(for: request)
         
         let task = session.dataTask(with: urlRequest) { data, response, error in
             if let data = data {
                 do {
                     
-                    let apiResponse = try JSONDecoder().decode(APIResponse<T.Response>.self, from: data)
+                    let apiResponse = try JSONDecoder().decode(T.Response.self, from: data)
                     
-                    if let dataContainer = apiResponse.data {
-                        completion(.success(dataContainer))
-                    } else {
-                        completion(.failure(APIError.decoding))
-                    }
+                    completion(.success(apiResponse))
                     
                 } catch {
                     completion(.failure(error))
@@ -49,14 +45,22 @@ final public class ApiManager {
         
         var urlRequest = URLRequest(url: endpoint.url!)
         urlRequest.httpMethod = request.method.description
-        urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        do {
-            urlRequest.httpBody = try JSONEncoder().encode(request)
-        } catch {
-            fatalError("Wrong parameters")
-        }
         
-        return urlRequest
+        switch request.enconder {
+        case .none:
+            return urlRequest
+        case .JSON:
+            
+            urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            do {
+                urlRequest.httpBody = try JSONEncoder().encode(request)
+            } catch {
+                fatalError("Wrong parameters")
+            }
+            
+            return urlRequest
+            
+        }
     }
 }
 

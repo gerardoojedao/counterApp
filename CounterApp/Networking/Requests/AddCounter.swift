@@ -20,6 +20,10 @@ public struct AddCounter: APIRequest {
         return .post
     }
     
+    public var enconder: Encoder {
+        return .JSON
+    }
+    
     // Parameters
     private let title: String
     

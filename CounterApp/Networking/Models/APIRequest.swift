@@ -14,4 +14,5 @@ public protocol APIRequest: Encodable {
     
     var resourceName: String { get }
     var method: HTTPMethod { get }
+    var enconder: Encoder { get }
 }

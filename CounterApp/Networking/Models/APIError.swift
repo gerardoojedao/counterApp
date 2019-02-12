@@ -12,7 +12,7 @@ public enum APIError: Error {
     case decoding
     case connection
     
-    var message: String {
+    var localizedDescription: String {
         switch self {
         case .decoding:
             return Constants.MessageError.decoding

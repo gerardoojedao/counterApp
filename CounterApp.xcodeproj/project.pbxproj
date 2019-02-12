@@ -32,6 +32,7 @@
 		56C8B605221268300095D8DF /* DecreaseCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C8B604221268300095D8DF /* DecreaseCounter.swift */; };
 		56C8B6072212683F0095D8DF /* DeleteCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C8B6062212683F0095D8DF /* DeleteCounter.swift */; };
 		56C8B609221268710095D8DF /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C8B608221268710095D8DF /* Counter.swift */; };
+		56C8B60B221276AD0095D8DF /* Encoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C8B60A221276AD0095D8DF /* Encoder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		56C8B604221268300095D8DF /* DecreaseCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecreaseCounter.swift; sourceTree = "<group>"; };
 		56C8B6062212683F0095D8DF /* DeleteCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCounter.swift; sourceTree = "<group>"; };
 		56C8B608221268710095D8DF /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
+		56C8B60A221276AD0095D8DF /* Encoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encoder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +249,7 @@
 			children = (
 				56C8B5F3221254830095D8DF /* Result.swift */,
 				56C8B5E7221238C20095D8DF /* HTTPMethod.swift */,
+				56C8B60A221276AD0095D8DF /* Encoder.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				5685904522122C2400D88930 /* AppDelegate.swift in Sources */,
 				56C8B5F4221254830095D8DF /* Result.swift in Sources */,
 				56C8B603221268260095D8DF /* IncreaseCounter.swift in Sources */,
+				56C8B60B221276AD0095D8DF /* Encoder.swift in Sources */,
 				56C8B609221268710095D8DF /* Counter.swift in Sources */,
 				56C8B5E6221236130095D8DF /* APIRequest.swift in Sources */,
 				56C8B5F6221254970095D8DF /* DataContainer.swift in Sources */,
