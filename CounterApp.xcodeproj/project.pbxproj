@@ -35,6 +35,8 @@
 		56CB9E0D22130A4A00CE5E85 /* ListCounterViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56CB9E0C22130A4A00CE5E85 /* ListCounterViewCell.xib */; };
 		56CB9E0F22130C8400CE5E85 /* ListCounterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CB9E0E22130C8400CE5E85 /* ListCounterViewCell.swift */; };
 		56CB9E1222132ADF00CE5E85 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CB9E1122132ADF00CE5E85 /* Helpers.swift */; };
+		56CB9E142213549000CE5E85 /* ListCounterFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56CB9E132213548F00CE5E85 /* ListCounterFooterView.xib */; };
+		56CB9E16221354BF00CE5E85 /* ListCounterFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CB9E15221354BF00CE5E85 /* ListCounterFooterView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +96,8 @@
 		56CB9E0C22130A4A00CE5E85 /* ListCounterViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListCounterViewCell.xib; sourceTree = "<group>"; };
 		56CB9E0E22130C8400CE5E85 /* ListCounterViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCounterViewCell.swift; sourceTree = "<group>"; };
 		56CB9E1122132ADF00CE5E85 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		56CB9E132213548F00CE5E85 /* ListCounterFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListCounterFooterView.xib; sourceTree = "<group>"; };
+		56CB9E15221354BF00CE5E85 /* ListCounterFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCounterFooterView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,8 +178,10 @@
 			children = (
 				5685904822122C2400D88930 /* Main.storyboard */,
 				5685904D22122C2900D88930 /* LaunchScreen.storyboard */,
-				56CB9E0C22130A4A00CE5E85 /* ListCounterViewCell.xib */,
 				56CB9E0E22130C8400CE5E85 /* ListCounterViewCell.swift */,
+				56CB9E0C22130A4A00CE5E85 /* ListCounterViewCell.xib */,
+				56CB9E15221354BF00CE5E85 /* ListCounterFooterView.swift */,
+				56CB9E132213548F00CE5E85 /* ListCounterFooterView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -378,6 +384,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56CB9E142213549000CE5E85 /* ListCounterFooterView.xib in Resources */,
 				5685904F22122C2900D88930 /* LaunchScreen.storyboard in Resources */,
 				56283CA222122E4700215E87 /* Localizable.strings in Resources */,
 				5685904C22122C2900D88930 /* Assets.xcassets in Resources */,
@@ -423,6 +430,7 @@
 				56C8B609221268710095D8DF /* Counter.swift in Sources */,
 				56C8B5E6221236130095D8DF /* APIRequest.swift in Sources */,
 				56C8B5F6221254970095D8DF /* DataContainer.swift in Sources */,
+				56CB9E16221354BF00CE5E85 /* ListCounterFooterView.swift in Sources */,
 				56C8B5FF221267F80095D8DF /* GetCounters.swift in Sources */,
 				56283C9D22122D4B00215E87 /* Constants.swift in Sources */,
 				56C8B5F2221243E40095D8DF /* APIResponse.swift in Sources */,

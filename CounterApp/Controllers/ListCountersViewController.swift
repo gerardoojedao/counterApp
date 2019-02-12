@@ -61,6 +61,7 @@ class ListCountersViewController: UIViewController {
         tableView.dataSource = self
         tableView.allowsSelection = false
         tableView.register(UINib(nibName: ListCounterViewCell.cellIdentifier, bundle: nil), forCellReuseIdentifier: ListCounterViewCell.cellIdentifier)
+        tableView.register(UINib(nibName: ListCounterFooterView.cellIdentifier, bundle: nil), forHeaderFooterViewReuseIdentifier: ListCounterFooterView.cellIdentifier)
         self.view.addSubview(self.tableView)
     }
     
@@ -185,6 +186,25 @@ extension ListCountersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 55.0
     }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
+        if !countersArray.isEmpty {
+            let cell = tableView.dequeueReusableHeaderFooterView(withIdentifier: ListCounterFooterView.cellIdentifier) as! ListCounterFooterView
+            cell.count = self.getTotalCounters()
+            return cell
+        }
+        
+        return nil
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if !countersArray.isEmpty {
+            return 40.0
+        }
+        
+        return 0.0
+    }
 }
 
 extension ListCountersViewController: CounterCellProtocol {
@@ -225,10 +245,9 @@ extension ListCountersViewController {
                 switch response {
                     
                 case .success(let response):
+                    
                     self.countersArray = response
-                    self.tableView.beginUpdates()
-                    self.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
-                    self.tableView.endUpdates()
+                    self.tableView.reloadSections(IndexSet(integer:0), with: .fade)
                     
                     if self.countersArray.count == 0 {
                         self.navigationItem.leftBarButtonItem?.isEnabled = false
@@ -259,13 +278,8 @@ extension ListCountersViewController {
                     
                 case .success(let response):
                     
-                    if let indexArray = response.index(where: { $0.title == title }) {
-                        let newCounter = response[indexArray]
-                        let indexPath = IndexPath(row: indexArray, section: 0)
-                        
-                        self.countersArray.insert(newCounter, at: indexArray)
-                        self.tableView.insertRows(at: [indexPath], with: .automatic)
-                    }
+                    self.countersArray = response
+                    self.tableView.reloadSections(IndexSet(integer:0), with: .fade)
                     
                     break
                     
@@ -288,14 +302,8 @@ extension ListCountersViewController {
                     
                 case .success(let response):
                     
-                    if let indexArray = response.index(where: { $0.id == id }) {
-                        let updatedCounter = response[indexArray]
-                        let indexPath = IndexPath(row: indexArray, section: 0)
-                        self.countersArray[indexArray] = updatedCounter
-                        self.tableView.reloadRows(at: [indexPath], with: .fade)
-                    }
-                    
                     self.countersArray = response
+                    self.tableView.reloadSections(IndexSet(integer:0), with: .fade)
                     break
                     
                 case .failure(let error):
@@ -317,14 +325,8 @@ extension ListCountersViewController {
                     
                 case .success(let response):
                     
-                    if let indexArray = response.index(where: { $0.id == id }) {
-                        let updatedCounter = response[indexArray]
-                        let indexPath = IndexPath(row: indexArray, section: 0)
-                        self.countersArray[indexArray] = updatedCounter
-                        self.tableView.reloadRows(at: [indexPath], with: .fade)
-                    }
-                    
                     self.countersArray = response
+                    self.tableView.reloadSections(IndexSet(integer:0), with: .fade)
                     
                     break
                     
@@ -344,19 +346,17 @@ extension ListCountersViewController {
 
                 switch response {
                     
-                case .success(_):
+                case .success(let response):
 
-                    if let indexArray = self.countersArray.index(where: { $0.id == id }) {
-                        let indexPath = IndexPath(row: indexArray, section: 0)
-                        self.countersArray.remove(at: indexArray)
-                        self.tableView.deleteRows(at: [indexPath], with: .left)
-                        
-                        if self.tableView.isEditing && self.countersArray.count == 0 {
-                            self.tableView.setEditing(!self.tableView.isEditing, animated: true)
-                            self.navigationItem.rightBarButtonItem = self.addBarBtn
-                            self.navigationItem.leftBarButtonItem?.isEnabled = false
-                        }
+                    self.countersArray = response
+                    self.tableView.reloadSections(IndexSet(integer:0), with: .fade)
+                    
+                    if self.tableView.isEditing && self.countersArray.count == 0 {
+                        self.tableView.setEditing(!self.tableView.isEditing, animated: true)
+                        self.navigationItem.rightBarButtonItem = self.addBarBtn
+                        self.navigationItem.leftBarButtonItem?.isEnabled = false
                     }
+                    
                     
                     break
                     
@@ -366,6 +366,7 @@ extension ListCountersViewController {
                 }
             }
         }
+
     }
 }
 
