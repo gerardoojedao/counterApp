@@ -8,9 +8,13 @@
 
 import UIKit
 
+private enum TableViewMode {
+    case edit
+    case none
+}
+
 class ListCountersViewController: UIViewController {
 
-    let cellIdentifier = "cell"
     let apiClient = ApiManager()
     
     var editBarBtn: UIBarButtonItem!
@@ -20,10 +24,10 @@ class ListCountersViewController: UIViewController {
     
     var countersArray = [Counter]() {
         didSet {
-            let total = countersArray.map({$0.count}).reduce(0, +)
-            print(total)
-            totalNumberLabel.text = "Total: " + String(describing: total)
-            self.tableView.reloadData()
+            totalNumberLabel.text = String(describing: self.getTotalCounters())
+            self.tableView.beginUpdates()
+            self.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
+            self.tableView.endUpdates()
         }
     }
     
@@ -31,6 +35,7 @@ class ListCountersViewController: UIViewController {
         super.viewDidLoad()
 
         setupUI()
+        getAllCountersOnApi()
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,100 +49,75 @@ class ListCountersViewController: UIViewController {
     }
     
     func setupNavBar() {
-        
-        editBarBtn = UIBarButtonItem(title: Constants.BtnTitle.add.localized(), style: .plain, target: self, action: #selector(editCountersTapped(_:)))
-        addBarBtn = UIBarButtonItem(title: Constants.BtnTitle.edit.localized(), style: .plain, target: self, action: #selector(addNewCounterTapped(_:)))
+        editBarBtn = UIBarButtonItem(title: Constants.BtnTitle.edit.localized(), style: .plain, target: self, action: #selector(editCountersTapped(_:)))
+        addBarBtn = UIBarButtonItem(title: Constants.BtnTitle.add.localized(), style: .plain, target: self, action: #selector(addNewCounterTapped(_:)))
         self.navigationItem.leftBarButtonItem = editBarBtn
         self.navigationItem.rightBarButtonItem = addBarBtn
-        
     }
     
     func setUpTableView() {
-
         tableView = UITableView(frame: UIScreen.main.bounds, style: UITableViewStyle.plain)
-        tableView.delegate      =   self
-        tableView.dataSource    =   self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UINib(nibName: ListCounterViewCell.cellIdentifier, bundle: nil), forCellReuseIdentifier: ListCounterViewCell.cellIdentifier)
+        tableView.allowsSelection = false
         self.view.addSubview(self.tableView)
     }
     
     func setUpToolbar() {
-        
         totalNumberLabel = UILabel()
         totalNumberLabel.numberOfLines = 0
-        totalNumberLabel.textAlignment = .center
-        totalNumberLabel.text = "a"
+        totalNumberLabel.textAlignment = .right
+        totalNumberLabel.text = String(describing: self.getTotalCounters())
         
         let titleView = UIBarButtonItem(customView: totalNumberLabel)
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         
-        self.toolbarItems = [flexibleSpace, titleView]
+        self.toolbarItems = [titleView]
         self.navigationController?.setToolbarHidden(false, animated: false)
-    }
-    
-    func setTotal() {
-        
-        let total = countersArray.map({$0.count}).reduce(0, +)
-        totalNumberLabel.text = "Text: " + String(describing: total)
     }
 
     @IBAction func editCountersTapped(_ sender: UIBarButtonItem) {
         
-        addBarBtn.isEnabled = false
-        
-        apiClient.send(GetCounters()) { (response) in
-            
-            DispatchQueue.main.async {
-                self.addBarBtn.isEnabled = true
-                
-                switch response {
-                    
-                case .success(let response):
-                    print(response)
-                    
-                    self.countersArray = response
-                    //self.tableView.reloadData()
-                    //self.setTotal()
-                    break
-                    
-                case .failure(let error):
-                    print(error.localizedDescription)
-                    break
-                }
-            }
-        }
+        let isEditing = !self.tableView.isEditing
+        self.tableView.setEditing(isEditing, animated: true)
     }
     
     @IBAction func addNewCounterTapped(_ sender: UIBarButtonItem) {
         
-        editBarBtn.isEnabled = false
+        showDialogAddCounter()
+    }
+    
+    func getTotalCounters() -> Int {
         
-        apiClient.send(AddCounter(title: "dhjdg")) { (response) in
-            
-            DispatchQueue.main.async {
-                self.editBarBtn.isEnabled = true
+        let total = countersArray.map({$0.count}).reduce(0, +)
+        return total
+    }
+    
+    func showDialogAddCounter() {
+        
+        let alert = UIAlertController(title: Constants.Alert.titleAdddCounter, message: Constants.Alert.messageAdddCounter, preferredStyle: .alert)
+        
+        alert.addTextField { (textfield) in }
+        
+        let cancelAction = UIAlertAction(title: Constants.Alert.titleBtnCancel, style: .cancel, handler: nil)
+        let confirmAction = UIAlertAction(title: Constants.Alert.titleBtnConfirm, style: .default) { (action) in
+            if let textfield = alert.textFields?[0], let title = textfield.text, !title.isEmpty {
                 
-                switch response {
-                    
-                case .success(let response):
-                    print(response)
-                    
-                    self.countersArray = response
-                    self.tableView.reloadData()
-                    self.setTotal()
-                    break
-                    
-                case .failure(let error):
-                    print(error.localizedDescription)
-                    break
-                }
+                self.addCounterOnApi(title: title)
             }
         }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(confirmAction)
+        
+        self.present(alert, animated: true, completion: nil)
     }
 
 }
 
-extension ListCountersViewController: UITableViewDelegate {
+// MARK: - UITableView
+extension ListCountersViewController: UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -149,16 +129,19 @@ extension ListCountersViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: ListCounterViewCell.cellIdentifier, for: indexPath) as! ListCounterViewCell
         
         let counter = countersArray[indexPath.row]
-        cell.textLabel?.text = counter.title
+        cell.title = counter.title
+        cell.count = counter.count
+        cell.delegate = self
         
         return cell
     }
+    
 }
 
-extension ListCountersViewController: UITableViewDataSource {
+extension ListCountersViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -169,33 +152,160 @@ extension ListCountersViewController: UITableViewDataSource {
         let deleteAction = UITableViewRowAction(style: .default, title: "Delete") { (action,indexPath)  in
 
             let counter = self.countersArray[indexPath.row]
-            
-            self.apiClient.send(DeleteCounter(id: counter.id)) { (response) in
-                
-                DispatchQueue.main.async {
-                    self.editBarBtn.isEnabled = true
-                    
-                    switch response {
-                        
-                    case .success(let response):
-                        print(response)
-                        
-                        self.countersArray = response
-                        self.tableView.reloadData()
-                        self.setTotal()
-                        break
-                        
-                    case .failure(let error):
-                        print(error.localizedDescription)
-                        break
-                    }
-                }
-            }
+            self.deleteCounterOnApi(id: counter.id)
         }
         
         return [deleteAction]
     }
     
+    func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
+        
+
+    }
+    
+    func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
+        
+
+    }
+    
+}
+
+extension ListCountersViewController: CounterCellProtocol {
+    
+    func increseCounterFrom(_ cell: ListCounterViewCell) {
+        
+        guard let indexPath = tableView.indexPath(for: cell) else {
+            return
+        }
+        
+        let counter = countersArray[(indexPath.row)]
+        increaseCounterOnApi(id: counter.id)
+    }
+    
+    func decreaseCounterFrom(_ cell: ListCounterViewCell) {
+        
+        guard let indexPath = tableView.indexPath(for: cell) else {
+            return
+        }
+        
+        let counter = countersArray[(indexPath.row)]
+        decreaseCounterOnApi(id: counter.id)
+    }
+}
+
+// MARK: - Request To Server
+extension ListCountersViewController {
+    
+    func getAllCountersOnApi() {
+        
+        addBarBtn.isEnabled = false
+        
+        apiClient.send(GetCounters()) { (response) in
+            
+            DispatchQueue.main.async {
+                self.addBarBtn.isEnabled = true
+                
+                switch response {
+                    
+                case .success(let response):
+                    self.countersArray = response
+                    break
+                    
+                case .failure(let error):
+                    Helpers.sharedInstance.showAlert(title: "Ops", message: error.localizedDescription, vc: self)
+                    break
+                }
+            }
+        }
+    }
+    
+    func addCounterOnApi(title: String) {
+        
+        apiClient.send(AddCounter(title: title)) { (response) in
+            
+            DispatchQueue.main.async {
+                self.editBarBtn.isEnabled = true
+                
+                switch response {
+                    
+                case .success(let response):
+                    
+                    self.countersArray = response
+                    break
+                    
+                case .failure(let error):
+                    Helpers.sharedInstance.showAlert(title: "Ops", message: error.localizedDescription, vc: self)
+                    break
+                }
+            }
+        }
+        
+    }
+    
+    func increaseCounterOnApi(id: String) {
+        
+        apiClient.send(IncreaseCounter(id: id)) { (response) in
+            
+            DispatchQueue.main.async {
+                
+                switch response {
+                    
+                case .success(let response):
+                    
+                    self.countersArray = response
+                    break
+                    
+                case .failure(let error):
+                    Helpers.sharedInstance.showAlert(title: "Ops", message: error.localizedDescription, vc: self)
+                    break
+                }
+            }
+        }
+        
+    }
+    
+    func decreaseCounterOnApi(id: String) {
+        
+        
+        apiClient.send(DecreaseCounter(id: id)) { (response) in
+            
+            DispatchQueue.main.async {
+                
+                switch response {
+                    
+                case .success(let response):
+                    
+                    self.countersArray = response
+                    break
+                    
+                case .failure(let error):
+                    Helpers.sharedInstance.showAlert(title: "Ops", message: error.localizedDescription, vc: self)
+                    break
+                }
+            }
+        }
+    }
+    
+    func deleteCounterOnApi(id: String) {
+        
+        self.apiClient.send(DeleteCounter(id: id)) { (response) in
+            
+            DispatchQueue.main.async {
+
+                switch response {
+                    
+                case .success(let response):
+                    
+                    self.countersArray = response
+                    break
+                    
+                case .failure(let error):
+                    Helpers.sharedInstance.showAlert(title: "Ops", message: error.localizedDescription, vc: self)
+                    break
+                }
+            }
+        }
+    }
 }
 
 

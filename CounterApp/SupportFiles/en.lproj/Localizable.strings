@@ -10,6 +10,14 @@
 "ADD" = "Add";
 "EDIT" = "Edit";
 
+/*---------------- Alert Titles ----------------*/
+
+"ALERT_TITLE_ADD_COUNTER" = "Add Counter";
+"MESSAGE_TITLE_ADD_COUNTER" = "Input name counter";
+"ALERT_TITLE_BTN_CANCEL" = "Cancel";
+"ALERT_TITLE_BTN_CONFIRM" = "Ok";
+
+
 /*-------------- Message Errors --------------*/
 "DECODING_ERROR" = "";
 "CONECCTION_ERROR" = "";

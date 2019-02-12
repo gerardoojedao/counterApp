@@ -12,7 +12,7 @@ import Foundation
 struct Constants {
     
     struct Network {
-        static let baseUrl = "http://localhost:3000/api/v1/"
+        static let baseUrl = "http://192.168.100.23:3000/api/v1/"
     }
     
     struct MessageError {
@@ -23,5 +23,12 @@ struct Constants {
     struct BtnTitle {
         static let add = "ADD".localized()
         static let edit = "EDIT".localized()
+    }
+    
+    struct Alert {
+        static let titleAdddCounter = "ALERT_TITLE_ADD_COUNTER".localized()
+        static let messageAdddCounter = "MESSAGE_TITLE_ADD_COUNTER".localized()
+        static let titleBtnCancel = "ALERT_TITLE_BTN_CANCEL".localized()
+        static let titleBtnConfirm = "ALERT_TITLE_BTN_CONFIRM".localized()
     }
 }

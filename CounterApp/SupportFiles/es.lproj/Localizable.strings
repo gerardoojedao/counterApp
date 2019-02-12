@@ -10,6 +10,13 @@
 "ADD" = "Agregar";
 "EDIT" = "Editar";
 
+/*---------------- Alert Titles ----------------*/
+
+"ALERT_TITLE_ADD_COUNTER" = "Agregar Contador";
+"MESSAGE_TITLE_ADD_COUNTER" = "Agrega el nombre del contador";
+"ALERT_TITLE_BTN_CANCEL" = "Cancelar";
+"ALERT_TITLE_BTN_CONFIRM" = "Aceptar";
+
 /*-------------- Message Errors --------------*/
 "DECODING_ERROR" = "";
 "CONECCTION_ERROR" = "";
