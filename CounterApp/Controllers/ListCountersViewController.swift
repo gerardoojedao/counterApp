@@ -20,16 +20,8 @@ class ListCountersViewController: UIViewController {
     var editBarBtn: UIBarButtonItem!
     var addBarBtn: UIBarButtonItem!
     var tableView: UITableView!
-    var totalNumberLabel: UILabel!
     
-    var countersArray = [Counter]() {
-        didSet {
-            totalNumberLabel.text = String(describing: self.getTotalCounters())
-            /*self.tableView.beginUpdates()
-            self.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
-            self.tableView.endUpdates()*/
-        }
-    }
+    var countersArray = [Counter]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +37,6 @@ class ListCountersViewController: UIViewController {
     func setupUI() {
         setupNavBar()
         setUpTableView()
-        setUpToolbar()
     }
     
     func setupNavBar() {
@@ -63,18 +54,6 @@ class ListCountersViewController: UIViewController {
         tableView.register(UINib(nibName: ListCounterViewCell.cellIdentifier, bundle: nil), forCellReuseIdentifier: ListCounterViewCell.cellIdentifier)
         tableView.register(UINib(nibName: ListCounterFooterView.cellIdentifier, bundle: nil), forHeaderFooterViewReuseIdentifier: ListCounterFooterView.cellIdentifier)
         self.view.addSubview(self.tableView)
-    }
-    
-    func setUpToolbar() {
-        totalNumberLabel = UILabel()
-        totalNumberLabel.numberOfLines = 0
-        totalNumberLabel.textAlignment = .right
-        totalNumberLabel.text = String(describing: self.getTotalCounters())
-        
-        let titleView = UIBarButtonItem(customView: totalNumberLabel)
-        
-        self.toolbarItems = [titleView]
-        self.navigationController?.setToolbarHidden(false, animated: false)
     }
 
     @IBAction func editCountersTapped(_ sender: UIBarButtonItem) {
