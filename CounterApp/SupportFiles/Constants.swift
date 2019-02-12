@@ -9,6 +9,14 @@
 import Foundation
 
 
-enum Constants {
+struct Constants {
     
+    struct Network {
+        static let baseUrl = "http://localhost:3000"
+    }
+    
+    struct MessageError {
+        static let decoding = "DECODING_ERROR".localized()
+        static let connection = "CONNECTION_ERROR".localized()
+    }
 }
