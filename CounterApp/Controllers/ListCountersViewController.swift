@@ -25,9 +25,9 @@ class ListCountersViewController: UIViewController {
     var countersArray = [Counter]() {
         didSet {
             totalNumberLabel.text = String(describing: self.getTotalCounters())
-            self.tableView.beginUpdates()
+            /*self.tableView.beginUpdates()
             self.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
-            self.tableView.endUpdates()
+            self.tableView.endUpdates()*/
         }
     }
     
@@ -59,8 +59,8 @@ class ListCountersViewController: UIViewController {
         tableView = UITableView(frame: UIScreen.main.bounds, style: UITableViewStyle.plain)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UINib(nibName: ListCounterViewCell.cellIdentifier, bundle: nil), forCellReuseIdentifier: ListCounterViewCell.cellIdentifier)
         tableView.allowsSelection = false
+        tableView.register(UINib(nibName: ListCounterViewCell.cellIdentifier, bundle: nil), forCellReuseIdentifier: ListCounterViewCell.cellIdentifier)
         self.view.addSubview(self.tableView)
     }
     
@@ -78,8 +78,18 @@ class ListCountersViewController: UIViewController {
 
     @IBAction func editCountersTapped(_ sender: UIBarButtonItem) {
         
-        let isEditing = !self.tableView.isEditing
-        self.tableView.setEditing(isEditing, animated: true)
+        if countersArray.count > 0 {
+            let isEditing = !self.tableView.isEditing
+            self.tableView.setEditing(isEditing, animated: true)
+            
+            if isEditing {
+                self.navigationItem.rightBarButtonItem = nil
+            }
+            
+            if !isEditing {
+                self.navigationItem.rightBarButtonItem = addBarBtn
+            }
+        }
     }
     
     @IBAction func addNewCounterTapped(_ sender: UIBarButtonItem) {
@@ -160,14 +170,21 @@ extension ListCountersViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
         
-
+        if (!tableView.isEditing) {
+            self.navigationItem.rightBarButtonItem = nil
+        }
     }
     
     func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
         
-
+        if (!tableView.isEditing) {
+            self.navigationItem.rightBarButtonItem = addBarBtn
+        }
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 55.0
+    }
 }
 
 extension ListCountersViewController: CounterCellProtocol {
@@ -209,6 +226,18 @@ extension ListCountersViewController {
                     
                 case .success(let response):
                     self.countersArray = response
+                    self.tableView.beginUpdates()
+                    self.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
+                    self.tableView.endUpdates()
+                    
+                    if self.countersArray.count == 0 {
+                        self.navigationItem.leftBarButtonItem?.isEnabled = false
+                    }
+                    
+                    if self.countersArray.count > 0 {
+                        self.navigationItem.leftBarButtonItem?.isEnabled = true
+                    }
+                    
                     break
                     
                 case .failure(let error):
@@ -230,7 +259,14 @@ extension ListCountersViewController {
                     
                 case .success(let response):
                     
-                    self.countersArray = response
+                    if let indexArray = response.index(where: { $0.title == title }) {
+                        let newCounter = response[indexArray]
+                        let indexPath = IndexPath(row: indexArray, section: 0)
+                        
+                        self.countersArray.insert(newCounter, at: indexArray)
+                        self.tableView.insertRows(at: [indexPath], with: .automatic)
+                    }
+                    
                     break
                     
                 case .failure(let error):
@@ -252,6 +288,13 @@ extension ListCountersViewController {
                     
                 case .success(let response):
                     
+                    if let indexArray = response.index(where: { $0.id == id }) {
+                        let updatedCounter = response[indexArray]
+                        let indexPath = IndexPath(row: indexArray, section: 0)
+                        self.countersArray[indexArray] = updatedCounter
+                        self.tableView.reloadRows(at: [indexPath], with: .fade)
+                    }
+                    
                     self.countersArray = response
                     break
                     
@@ -266,7 +309,6 @@ extension ListCountersViewController {
     
     func decreaseCounterOnApi(id: String) {
         
-        
         apiClient.send(DecreaseCounter(id: id)) { (response) in
             
             DispatchQueue.main.async {
@@ -275,7 +317,15 @@ extension ListCountersViewController {
                     
                 case .success(let response):
                     
+                    if let indexArray = response.index(where: { $0.id == id }) {
+                        let updatedCounter = response[indexArray]
+                        let indexPath = IndexPath(row: indexArray, section: 0)
+                        self.countersArray[indexArray] = updatedCounter
+                        self.tableView.reloadRows(at: [indexPath], with: .fade)
+                    }
+                    
                     self.countersArray = response
+                    
                     break
                     
                 case .failure(let error):
@@ -294,9 +344,20 @@ extension ListCountersViewController {
 
                 switch response {
                     
-                case .success(let response):
+                case .success(_):
+
+                    if let indexArray = self.countersArray.index(where: { $0.id == id }) {
+                        let indexPath = IndexPath(row: indexArray, section: 0)
+                        self.countersArray.remove(at: indexArray)
+                        self.tableView.deleteRows(at: [indexPath], with: .left)
+                        
+                        if self.tableView.isEditing && self.countersArray.count == 0 {
+                            self.tableView.setEditing(!self.tableView.isEditing, animated: true)
+                            self.navigationItem.rightBarButtonItem = self.addBarBtn
+                            self.navigationItem.leftBarButtonItem?.isEnabled = false
+                        }
+                    }
                     
-                    self.countersArray = response
                     break
                     
                 case .failure(let error):
