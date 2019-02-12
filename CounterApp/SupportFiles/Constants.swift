@@ -19,4 +19,9 @@ struct Constants {
         static let decoding = "DECODING_ERROR".localized()
         static let connection = "CONNECTION_ERROR".localized()
     }
+    
+    struct BtnTitle {
+        static let add = "ADD".localized()
+        static let edit = "EDIT".localized()
+    }
 }
