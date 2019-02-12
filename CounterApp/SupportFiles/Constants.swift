@@ -12,7 +12,7 @@ import Foundation
 struct Constants {
     
     struct Network {
-        static let baseUrl = "http://192.168.100.23:3000/api/v1/"
+        static let baseUrl = "http://localhost:3000/api/v1/"
     }
     
     struct MessageError {

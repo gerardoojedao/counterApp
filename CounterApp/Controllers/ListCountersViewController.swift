@@ -17,6 +17,8 @@ class ListCountersViewController: UIViewController {
     var tableView: UITableView!
     
     var countersArray = [Counter]()
+    var isEditMultipleDelete: Bool = false
+    var isEditSingleDelete: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,21 +57,12 @@ class ListCountersViewController: UIViewController {
         
         if !countersArray.isEmpty {
             
-            let isNowEdit = !self.tableView.isEditing
+            let isEditingMode = !self.tableView.isEditing
             
-            self.tableView.setEditing(isNowEdit, animated: true)
+            self.isEditMultipleDelete = isEditingMode
+            self.tableView.setEditing(isEditingMode, animated: true)
             
-            if isNowEdit {
-                self.navigationItem.rightBarButtonItem = nil
-                self.navigationItem.leftBarButtonItem?.title = Constants.BarButton.titleDone
-                self.navigationItem.leftBarButtonItem?.style = .done
-            }
-            
-            if !isNowEdit {
-                self.navigationItem.rightBarButtonItem = addBarBtn
-                self.navigationItem.leftBarButtonItem?.title = Constants.BarButton.titleEdit
-                self.navigationItem.leftBarButtonItem?.style = .plain
-            }
+            updateUI()
         }
     }
     
@@ -114,6 +107,28 @@ class ListCountersViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 
+    func updateUI() {
+        
+        let isTableviewEditing = self.tableView.isEditing
+        
+        if isTableviewEditing {
+            self.navigationItem.rightBarButtonItem = nil
+            self.navigationItem.leftBarButtonItem?.title = Constants.BarButton.titleDone
+            self.navigationItem.leftBarButtonItem?.style = .done
+        }
+        
+        if !isTableviewEditing {
+            self.navigationItem.rightBarButtonItem = addBarBtn
+            self.navigationItem.leftBarButtonItem?.title = Constants.BarButton.titleEdit
+            self.navigationItem.leftBarButtonItem?.style = .plain
+        }
+        
+        if self.countersArray.isEmpty {
+            self.navigationItem.rightBarButtonItem = self.addBarBtn
+            self.navigationItem.leftBarButtonItem?.isEnabled = false
+            self.isEditMultipleDelete = false
+        }
+    }
 }
 
 // MARK: - UITableView
@@ -243,13 +258,7 @@ extension ListCountersViewController {
                     self.countersArray = response
                     self.tableView.reloadSections(IndexSet(integer:0), with: .fade)
                     
-                    if self.countersArray.isEmpty {
-                        self.navigationItem.leftBarButtonItem?.isEnabled = false
-                    }
-                    
-                    if !self.countersArray.isEmpty {
-                        self.navigationItem.leftBarButtonItem?.isEnabled = true
-                    }
+                    self.updateUI()
                     
                     break
                     
@@ -343,10 +352,10 @@ extension ListCountersViewController {
                     self.countersArray = response
                     self.tableView.reloadSections(IndexSet(integer:0), with: .fade)
                     
-                    if self.tableView.isEditing && self.countersArray.isEmpty {
-                        self.tableView.setEditing(!self.tableView.isEditing, animated: true)
-                        self.navigationItem.rightBarButtonItem = self.addBarBtn
-                        self.navigationItem.leftBarButtonItem?.isEnabled = false
+                    if !self.isEditMultipleDelete || response.isEmpty {
+                        
+                        self.tableView.setEditing(false, animated: true)
+                        self.updateUI()
                     }
                     
                     break
