@@ -8,11 +8,6 @@
 
 import UIKit
 
-private enum TableViewMode {
-    case edit
-    case none
-}
-
 class ListCountersViewController: UIViewController {
 
     let apiClient = ApiManager()
@@ -353,7 +348,6 @@ extension ListCountersViewController {
                         self.navigationItem.rightBarButtonItem = self.addBarBtn
                         self.navigationItem.leftBarButtonItem?.isEnabled = false
                     }
-                    
                     
                     break
                     
