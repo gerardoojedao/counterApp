@@ -9,6 +9,7 @@
 /*---------------- Btns Titles ----------------*/
 "ADD" = "Add";
 "EDIT" = "Edit";
+"DELETE" = "Delete";
 
 /*---------------- Alert Titles ----------------*/
 
@@ -17,6 +18,11 @@
 "ALERT_TITLE_BTN_CANCEL" = "Cancel";
 "ALERT_TITLE_BTN_CONFIRM" = "Ok";
 
+/*---------------- Bar Button Titles ----------------*/
+
+"EDIT_TITLE_BAR_BUTTON" = "Edit";
+"DONE_TITLE_BAR_BUTTON" = "Done";
+"ADD_TITLE_BAR_BUTTON" = "Add";
 
 /*-------------- Message Errors --------------*/
 "DECODING_ERROR" = "";

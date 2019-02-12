@@ -9,6 +9,7 @@
 /*---------------- Btns Titles ----------------*/
 "ADD" = "Agregar";
 "EDIT" = "Editar";
+"DELETE" = "Eliminar";
 
 /*---------------- Alert Titles ----------------*/
 
@@ -16,6 +17,12 @@
 "MESSAGE_TITLE_ADD_COUNTER" = "Agrega el nombre del contador";
 "ALERT_TITLE_BTN_CANCEL" = "Cancelar";
 "ALERT_TITLE_BTN_CONFIRM" = "Aceptar";
+
+/*---------------- Bar Button Titles ----------------*/
+
+"EDIT_TITLE_BAR_BUTTON" = "Editar";
+"DONE_TITLE_BAR_BUTTON" = "Listo";
+"ADD_TITLE_BAR_BUTTON" = "Agregar";
 
 /*-------------- Message Errors --------------*/
 "DECODING_ERROR" = "";

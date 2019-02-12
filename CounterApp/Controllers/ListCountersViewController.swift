@@ -58,16 +58,22 @@ class ListCountersViewController: UIViewController {
 
     @IBAction func editCountersTapped(_ sender: UIBarButtonItem) {
         
-        if countersArray.count > 0 {
-            let isEditing = !self.tableView.isEditing
-            self.tableView.setEditing(isEditing, animated: true)
+        if !countersArray.isEmpty {
             
-            if isEditing {
+            let isNowEdit = !self.tableView.isEditing
+            
+            self.tableView.setEditing(isNowEdit, animated: true)
+            
+            if isNowEdit {
                 self.navigationItem.rightBarButtonItem = nil
+                self.navigationItem.leftBarButtonItem?.title = Constants.BarButton.titleDone
+                self.navigationItem.leftBarButtonItem?.style = .done
             }
             
-            if !isEditing {
+            if !isNowEdit {
                 self.navigationItem.rightBarButtonItem = addBarBtn
+                self.navigationItem.leftBarButtonItem?.title = Constants.BarButton.titleEdit
+                self.navigationItem.leftBarButtonItem?.style = .plain
             }
         }
     }
@@ -87,14 +93,24 @@ class ListCountersViewController: UIViewController {
         
         let alert = UIAlertController(title: Constants.Alert.titleAdddCounter, message: Constants.Alert.messageAdddCounter, preferredStyle: .alert)
         
-        alert.addTextField { (textfield) in }
-        
         let cancelAction = UIAlertAction(title: Constants.Alert.titleBtnCancel, style: .cancel, handler: nil)
         let confirmAction = UIAlertAction(title: Constants.Alert.titleBtnConfirm, style: .default) { (action) in
             if let textfield = alert.textFields?[0], let title = textfield.text, !title.isEmpty {
                 
                 self.addCounterOnApi(title: title)
             }
+        }
+        confirmAction.isEnabled = false
+        
+        alert.addTextField { (textfield) in
+            
+            NotificationCenter.default.addObserver(forName: .UITextFieldTextDidChange, object: textfield, queue: OperationQueue.main, using:
+                {_ in
+                    let textCount = textfield.text?.trimmingCharacters(in: .whitespacesAndNewlines).count ?? 0
+                    let textIsNotEmpty = textCount > 0
+
+                    confirmAction.isEnabled = textIsNotEmpty
+            })
         }
         
         alert.addAction(cancelAction)
@@ -139,7 +155,7 @@ extension ListCountersViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 
-        let deleteAction = UITableViewRowAction(style: .default, title: "Delete") { (action,indexPath)  in
+        let deleteAction = UITableViewRowAction(style: .default, title: Constants.BtnTitle.delete) { (action,indexPath)  in
 
             let counter = self.countersArray[indexPath.row]
             self.deleteCounterOnApi(id: counter.id)
@@ -152,6 +168,8 @@ extension ListCountersViewController: UITableViewDelegate {
         
         if (!tableView.isEditing) {
             self.navigationItem.rightBarButtonItem = nil
+            self.navigationItem.leftBarButtonItem?.title = Constants.BarButton.titleDone
+            self.navigationItem.leftBarButtonItem?.style = .done
         }
     }
     
@@ -159,6 +177,8 @@ extension ListCountersViewController: UITableViewDelegate {
         
         if (!tableView.isEditing) {
             self.navigationItem.rightBarButtonItem = addBarBtn
+            self.navigationItem.leftBarButtonItem?.title = Constants.BarButton.titleEdit
+            self.navigationItem.leftBarButtonItem?.style = .plain
         }
     }
     
@@ -228,11 +248,11 @@ extension ListCountersViewController {
                     self.countersArray = response
                     self.tableView.reloadSections(IndexSet(integer:0), with: .fade)
                     
-                    if self.countersArray.count == 0 {
+                    if self.countersArray.isEmpty {
                         self.navigationItem.leftBarButtonItem?.isEnabled = false
                     }
                     
-                    if self.countersArray.count > 0 {
+                    if !self.countersArray.isEmpty {
                         self.navigationItem.leftBarButtonItem?.isEnabled = true
                     }
                     
@@ -268,7 +288,6 @@ extension ListCountersViewController {
                 }
             }
         }
-        
     }
     
     func increaseCounterOnApi(id: String) {
@@ -291,7 +310,6 @@ extension ListCountersViewController {
                 }
             }
         }
-        
     }
     
     func decreaseCounterOnApi(id: String) {
@@ -330,7 +348,7 @@ extension ListCountersViewController {
                     self.countersArray = response
                     self.tableView.reloadSections(IndexSet(integer:0), with: .fade)
                     
-                    if self.tableView.isEditing && self.countersArray.count == 0 {
+                    if self.tableView.isEditing && self.countersArray.isEmpty {
                         self.tableView.setEditing(!self.tableView.isEditing, animated: true)
                         self.navigationItem.rightBarButtonItem = self.addBarBtn
                         self.navigationItem.leftBarButtonItem?.isEnabled = false
@@ -345,7 +363,6 @@ extension ListCountersViewController {
                 }
             }
         }
-
     }
 }
 

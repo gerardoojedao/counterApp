@@ -21,14 +21,21 @@ struct Constants {
     }
     
     struct BtnTitle {
-        static let add = "ADD".localized()
-        static let edit = "EDIT".localized()
+        static let add      = "ADD".localized()
+        static let edit     = "EDIT".localized()
+        static let delete   = "DELETE".localized()
     }
     
     struct Alert {
-        static let titleAdddCounter = "ALERT_TITLE_ADD_COUNTER".localized()
-        static let messageAdddCounter = "MESSAGE_TITLE_ADD_COUNTER".localized()
-        static let titleBtnCancel = "ALERT_TITLE_BTN_CANCEL".localized()
-        static let titleBtnConfirm = "ALERT_TITLE_BTN_CONFIRM".localized()
+        static let titleAdddCounter     = "ALERT_TITLE_ADD_COUNTER".localized()
+        static let messageAdddCounter   = "MESSAGE_TITLE_ADD_COUNTER".localized()
+        static let titleBtnCancel       = "ALERT_TITLE_BTN_CANCEL".localized()
+        static let titleBtnConfirm      = "ALERT_TITLE_BTN_CONFIRM".localized()
+    }
+    
+    struct BarButton {
+        static let titleEdit    = "EDIT_TITLE_BAR_BUTTON".localized()
+        static let titleDone    = "DONE_TITLE_BAR_BUTTON".localized()
+        static let titleAdd     = "ADD_TITLE_BAR_BUTTON".localized()
     }
 }
