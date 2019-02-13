@@ -153,6 +153,14 @@ extension ListCounterViewController: UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if countersArray.count == 0 {
+            tableView.setEmptyView(title: Constants.EmptyView.titleMessage, subtitle: Constants.EmptyView.subtitleMessage)
+        }
+        else {
+            tableView.restore()
+        }
+        
         return countersArray.count
     }
     

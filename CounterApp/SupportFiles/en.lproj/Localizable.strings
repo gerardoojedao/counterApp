@@ -25,6 +25,11 @@
 "DONE_TITLE_BAR_BUTTON" = "Done";
 "ADD_TITLE_BAR_BUTTON" = "Add";
 
+/*---------------- EMPTY Titles ----------------*/
+
+"TITLE_EMPTY_VIEW" = "You don't have any counter";
+"SUBTITLE_EMPTY_VIEW" = "Add a counter";
+
 /*-------------- Message Errors --------------*/
 "DECODING_ERROR" = "";
 "CONECCTION_ERROR" = "";

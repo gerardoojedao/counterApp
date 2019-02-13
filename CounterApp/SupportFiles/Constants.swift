@@ -12,7 +12,7 @@ import Foundation
 struct Constants {
     
     struct Network {
-        static let baseUrl = "http://localhost:3000/api/v1/"
+        static let baseUrl = "http://192.168.100.23:3000/api/v1/"
     }
     
     struct MessageError {
@@ -38,5 +38,10 @@ struct Constants {
         static let titleEdit    = "EDIT_TITLE_BAR_BUTTON".localized()
         static let titleDone    = "DONE_TITLE_BAR_BUTTON".localized()
         static let titleAdd     = "ADD_TITLE_BAR_BUTTON".localized()
+    }
+    
+    struct EmptyView {
+        static let titleMessage     = "TITLE_EMPTY_VIEW".localized()
+        static let subtitleMessage  = "SUBTITLE_EMPTY_VIEW".localized()
     }
 }

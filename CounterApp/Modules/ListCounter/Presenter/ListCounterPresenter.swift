@@ -61,5 +61,6 @@ extension ListCounterPresenter: ListCounterPresenterProtocol {
     
     func countersFetchedError(error: Error) {
         view?.showError(error: error)
+        view?.updateUIWith([])
     }
 }

@@ -40,6 +40,8 @@
 		56CB9E1222132ADF00CE5E85 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CB9E1122132ADF00CE5E85 /* Helpers.swift */; };
 		56CB9E142213549000CE5E85 /* ListCounterFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56CB9E132213548F00CE5E85 /* ListCounterFooterView.xib */; };
 		56CB9E16221354BF00CE5E85 /* ListCounterFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CB9E15221354BF00CE5E85 /* ListCounterFooterView.swift */; };
+		56CB9E182214583200CE5E85 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CB9E172214583200CE5E85 /* UITableView+Extension.swift */; };
+		56CB9E1C22145D1300CE5E85 /* ListCounterEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CB9E1B22145D1300CE5E85 /* ListCounterEmptyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +106,8 @@
 		56CB9E1122132ADF00CE5E85 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		56CB9E132213548F00CE5E85 /* ListCounterFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListCounterFooterView.xib; sourceTree = "<group>"; };
 		56CB9E15221354BF00CE5E85 /* ListCounterFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCounterFooterView.swift; sourceTree = "<group>"; };
+		56CB9E172214583200CE5E85 /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		56CB9E1B22145D1300CE5E85 /* ListCounterEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCounterEmptyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				56C8B5FA22125D6F0095D8DF /* String+Extension.swift */,
+				56CB9E172214583200CE5E85 /* UITableView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -315,6 +320,7 @@
 				56CB9E0E22130C8400CE5E85 /* ListCounterViewCell.swift */,
 				56CB9E0C22130A4A00CE5E85 /* ListCounterViewCell.xib */,
 				56CB9E15221354BF00CE5E85 /* ListCounterFooterView.swift */,
+				56CB9E1B22145D1300CE5E85 /* ListCounterEmptyView.swift */,
 				56CB9E132213548F00CE5E85 /* ListCounterFooterView.xib */,
 			);
 			path = View;
@@ -473,6 +479,7 @@
 				5685904522122C2400D88930 /* AppDelegate.swift in Sources */,
 				56C8B5F4221254830095D8DF /* Result.swift in Sources */,
 				56C8B6552213AC8E0095D8DF /* ListCounterRouter.swift in Sources */,
+				56CB9E1C22145D1300CE5E85 /* ListCounterEmptyView.swift in Sources */,
 				56C8B603221268260095D8DF /* IncreaseCounter.swift in Sources */,
 				56C8B6572213AC8E0095D8DF /* ListCounterViewController.swift in Sources */,
 				56C8B60B221276AD0095D8DF /* Encoder.swift in Sources */,
@@ -488,6 +495,7 @@
 				56CB9E0F22130C8400CE5E85 /* ListCounterViewCell.swift in Sources */,
 				56C8B6542213AC8E0095D8DF /* ListCounterProtocols.swift in Sources */,
 				56C8B605221268300095D8DF /* DecreaseCounter.swift in Sources */,
+				56CB9E182214583200CE5E85 /* UITableView+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

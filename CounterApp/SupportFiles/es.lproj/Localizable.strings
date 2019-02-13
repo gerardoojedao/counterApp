@@ -25,6 +25,11 @@
 "DONE_TITLE_BAR_BUTTON" = "Listo";
 "ADD_TITLE_BAR_BUTTON" = "Agregar";
 
+/*---------------- EMPTY Titles ----------------*/
+
+"TITLE_EMPTY_VIEW" = "No hay contadores para mostrar";
+"SUBTITLE_EMPTY_VIEW" = "Agrega un contador";
+
 /*-------------- Message Errors --------------*/
 "DECODING_ERROR" = "";
 "CONECCTION_ERROR" = "";
