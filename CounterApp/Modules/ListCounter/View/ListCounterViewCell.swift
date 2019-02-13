@@ -35,6 +35,10 @@ class ListCounterViewCell: UITableViewCell {
             countLabel.text = String(describing: count!)
             stepper.value = oldStepperValue
             
+            stepper.incrementImage(for: .normal)?.accessibilityIdentifier = "Increment"
+            stepper.incrementImage(for: .normal)?.accessibilityIdentifier = "Decrement"
+            
+            stepper.accessibilityIdentifier =  "stepper"
         }
     }
     

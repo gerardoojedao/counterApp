@@ -42,6 +42,11 @@
 		56CB9E16221354BF00CE5E85 /* ListCounterFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CB9E15221354BF00CE5E85 /* ListCounterFooterView.swift */; };
 		56CB9E182214583200CE5E85 /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CB9E172214583200CE5E85 /* UITableView+Extension.swift */; };
 		56CB9E1C22145D1300CE5E85 /* ListCounterEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CB9E1B22145D1300CE5E85 /* ListCounterEmptyView.swift */; };
+		56CB9E1D2214813800CE5E85 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56283C9C22122D4B00215E87 /* Constants.swift */; };
+		56CB9E1E2214829600CE5E85 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56283CA422122E4700215E87 /* Localizable.strings */; };
+		56CB9E1F2214829700CE5E85 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 56283CA422122E4700215E87 /* Localizable.strings */; };
+		56CB9E20221482CB00CE5E85 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C8B5FA22125D6F0095D8DF /* String+Extension.swift */; };
+		56CB9E21221482CB00CE5E85 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C8B5FA22125D6F0095D8DF /* String+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -452,6 +457,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56CB9E1E2214829600CE5E85 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -459,6 +465,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56CB9E1F2214829700CE5E85 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +510,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56CB9E21221482CB00CE5E85 /* String+Extension.swift in Sources */,
 				5685905A22122C2900D88930 /* CounterAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -512,6 +520,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5685906522122C2900D88930 /* CounterAppUITests.swift in Sources */,
+				56CB9E20221482CB00CE5E85 /* String+Extension.swift in Sources */,
+				56CB9E1D2214813800CE5E85 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -721,6 +731,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P7KQ34364G;
 				INFOPLIST_FILE = CounterAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -741,6 +752,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P7KQ34364G;
 				INFOPLIST_FILE = CounterAppTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -760,6 +772,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P7KQ34364G;
 				INFOPLIST_FILE = CounterAppUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -779,6 +792,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P7KQ34364G;
 				INFOPLIST_FILE = CounterAppUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

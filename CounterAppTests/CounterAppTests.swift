@@ -18,7 +18,7 @@ class CounterAppTests: XCTestCase {
         super.setUp()
 
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        countersViewController = ListCounterRouter.createModule() as! ListCounterViewController
+        countersViewController = ListCounterRouter.createModule() as? ListCounterViewController
         countersViewController.setupUI()
     }
     
