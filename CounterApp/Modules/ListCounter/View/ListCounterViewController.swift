@@ -25,6 +25,7 @@ class ListCounterViewController: UIViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = "CounterApp"
         setupUI()
         presenter?.viewDidLoad()
     }
@@ -111,10 +112,10 @@ extension ListCounterViewController: ListCounterViewProtocol {
     
     func updateUIWith(_ counters: CountersResponse) {
         
+        self.countersArray = counters
+        
         DispatchQueue.main.async {
     
-            self.countersArray = counters
-            
             if !self.isEditMultipleDelete || counters.isEmpty {
                 self.tableView.setEditing(false, animated: true)
             }

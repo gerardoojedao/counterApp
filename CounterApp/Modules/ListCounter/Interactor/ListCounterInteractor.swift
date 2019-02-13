@@ -102,5 +102,4 @@ extension ListCounterInteractor: ListCounterInteractorProtocol {
             }
         }
     }
-    
 }
