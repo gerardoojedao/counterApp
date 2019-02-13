@@ -17,6 +17,7 @@
 "MESSAGE_TITLE_ADD_COUNTER" = "Input name counter";
 "ALERT_TITLE_BTN_CANCEL" = "Cancel";
 "ALERT_TITLE_BTN_CONFIRM" = "Ok";
+"ALERT_TITLE_ERROR" = "Error";
 
 /*---------------- Bar Button Titles ----------------*/
 

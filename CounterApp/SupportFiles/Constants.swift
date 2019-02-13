@@ -31,6 +31,7 @@ struct Constants {
         static let messageAdddCounter   = "MESSAGE_TITLE_ADD_COUNTER".localized()
         static let titleBtnCancel       = "ALERT_TITLE_BTN_CANCEL".localized()
         static let titleBtnConfirm      = "ALERT_TITLE_BTN_CONFIRM".localized()
+        static let titleError           = "ALERT_TITLE_ERROR".localized()
     }
     
     struct BarButton {

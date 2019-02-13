@@ -138,7 +138,7 @@ extension ListCounterViewController: ListCounterViewProtocol {
     }
     
     func showError(error: Error) {
-        Helpers.sharedInstance.showAlert(title: "Error", message: error.localizedDescription, vc: self)
+        Helpers.sharedInstance.showAlert(title: Constants.Alert.titleError, message: error.localizedDescription, vc: self)
     }
 }
 

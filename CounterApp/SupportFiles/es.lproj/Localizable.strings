@@ -17,6 +17,7 @@
 "MESSAGE_TITLE_ADD_COUNTER" = "Agrega el nombre del contador";
 "ALERT_TITLE_BTN_CANCEL" = "Cancelar";
 "ALERT_TITLE_BTN_CONFIRM" = "Aceptar";
+"ALERT_TITLE_ERROR" = "Error";
 
 /*---------------- Bar Button Titles ----------------*/
 
