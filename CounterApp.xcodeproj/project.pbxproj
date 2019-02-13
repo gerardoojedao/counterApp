@@ -17,7 +17,6 @@
 		5685906522122C2900D88930 /* CounterAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5685906422122C2900D88930 /* CounterAppUITests.swift */; };
 		56C8B5E6221236130095D8DF /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C8B5E5221236130095D8DF /* APIRequest.swift */; };
 		56C8B5E8221238C20095D8DF /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C8B5E7221238C20095D8DF /* HTTPMethod.swift */; };
-		56C8B5EA22123A3F0095D8DF /* URLRequest+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C8B5E922123A3F0095D8DF /* URLRequest+Extension.swift */; };
 		56C8B5EE221243AD0095D8DF /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C8B5ED221243AD0095D8DF /* APIManager.swift */; };
 		56C8B5F2221243E40095D8DF /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C8B5F1221243E40095D8DF /* APIResponse.swift */; };
 		56C8B5F4221254830095D8DF /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C8B5F3221254830095D8DF /* Result.swift */; };
@@ -31,7 +30,11 @@
 		56C8B6072212683F0095D8DF /* DeleteCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C8B6062212683F0095D8DF /* DeleteCounter.swift */; };
 		56C8B609221268710095D8DF /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C8B608221268710095D8DF /* Counter.swift */; };
 		56C8B60B221276AD0095D8DF /* Encoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C8B60A221276AD0095D8DF /* Encoder.swift */; };
-		56C8B60D22127E710095D8DF /* ListCountersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C8B60C22127E710095D8DF /* ListCountersViewController.swift */; };
+		56C8B6532213AC8E0095D8DF /* ListCounterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C8B6492213AC8E0095D8DF /* ListCounterPresenter.swift */; };
+		56C8B6542213AC8E0095D8DF /* ListCounterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C8B64B2213AC8E0095D8DF /* ListCounterProtocols.swift */; };
+		56C8B6552213AC8E0095D8DF /* ListCounterRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C8B64D2213AC8E0095D8DF /* ListCounterRouter.swift */; };
+		56C8B6562213AC8E0095D8DF /* ListCounterInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C8B64F2213AC8E0095D8DF /* ListCounterInteractor.swift */; };
+		56C8B6572213AC8E0095D8DF /* ListCounterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C8B6512213AC8E0095D8DF /* ListCounterViewController.swift */; };
 		56CB9E0D22130A4A00CE5E85 /* ListCounterViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56CB9E0C22130A4A00CE5E85 /* ListCounterViewCell.xib */; };
 		56CB9E0F22130C8400CE5E85 /* ListCounterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CB9E0E22130C8400CE5E85 /* ListCounterViewCell.swift */; };
 		56CB9E1222132ADF00CE5E85 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CB9E1122132ADF00CE5E85 /* Helpers.swift */; };
@@ -78,7 +81,6 @@
 		5685906622122C2900D88930 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56C8B5E5221236130095D8DF /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		56C8B5E7221238C20095D8DF /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
-		56C8B5E922123A3F0095D8DF /* URLRequest+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Extension.swift"; sourceTree = "<group>"; };
 		56C8B5ED221243AD0095D8DF /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		56C8B5F1221243E40095D8DF /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		56C8B5F3221254830095D8DF /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
@@ -92,7 +94,11 @@
 		56C8B6062212683F0095D8DF /* DeleteCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCounter.swift; sourceTree = "<group>"; };
 		56C8B608221268710095D8DF /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 		56C8B60A221276AD0095D8DF /* Encoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encoder.swift; sourceTree = "<group>"; };
-		56C8B60C22127E710095D8DF /* ListCountersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCountersViewController.swift; sourceTree = "<group>"; };
+		56C8B6492213AC8E0095D8DF /* ListCounterPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCounterPresenter.swift; sourceTree = "<group>"; };
+		56C8B64B2213AC8E0095D8DF /* ListCounterProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCounterProtocols.swift; sourceTree = "<group>"; };
+		56C8B64D2213AC8E0095D8DF /* ListCounterRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCounterRouter.swift; sourceTree = "<group>"; };
+		56C8B64F2213AC8E0095D8DF /* ListCounterInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCounterInteractor.swift; sourceTree = "<group>"; };
+		56C8B6512213AC8E0095D8DF /* ListCounterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCounterViewController.swift; sourceTree = "<group>"; };
 		56CB9E0C22130A4A00CE5E85 /* ListCounterViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListCounterViewCell.xib; sourceTree = "<group>"; };
 		56CB9E0E22130C8400CE5E85 /* ListCounterViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCounterViewCell.swift; sourceTree = "<group>"; };
 		56CB9E1122132ADF00CE5E85 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
@@ -128,6 +134,8 @@
 		56283C9622122CC100215E87 /* SupportFiles */ = {
 			isa = PBXGroup;
 			children = (
+				5685904822122C2400D88930 /* Main.storyboard */,
+				5685904D22122C2900D88930 /* LaunchScreen.storyboard */,
 				5685904422122C2400D88930 /* AppDelegate.swift */,
 				5685904B22122C2900D88930 /* Assets.xcassets */,
 				5685905022122C2900D88930 /* Info.plist */,
@@ -148,18 +156,9 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		56283C9822122CD000215E87 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				56C8B60C22127E710095D8DF /* ListCountersViewController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		56283C9922122CE100215E87 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				56C8B5E922123A3F0095D8DF /* URLRequest+Extension.swift */,
 				56C8B5FA22125D6F0095D8DF /* String+Extension.swift */,
 			);
 			path = Extensions;
@@ -171,19 +170,6 @@
 				56C8B608221268710095D8DF /* Counter.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		56283C9B22122D1C00215E87 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				5685904822122C2400D88930 /* Main.storyboard */,
-				5685904D22122C2900D88930 /* LaunchScreen.storyboard */,
-				56CB9E0E22130C8400CE5E85 /* ListCounterViewCell.swift */,
-				56CB9E0C22130A4A00CE5E85 /* ListCounterViewCell.xib */,
-				56CB9E15221354BF00CE5E85 /* ListCounterFooterView.swift */,
-				56CB9E132213548F00CE5E85 /* ListCounterFooterView.xib */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		5685903822122C2400D88930 = {
@@ -209,10 +195,9 @@
 		5685904322122C2400D88930 /* CounterApp */ = {
 			isa = PBXGroup;
 			children = (
+				56C8B60E2213AB2A0095D8DF /* Modules */,
 				56CB9E1022132AD000CE5E85 /* Helpers */,
-				56283C9B22122D1C00215E87 /* Views */,
 				56283C9A22122D1600215E87 /* Models */,
-				56283C9822122CD000215E87 /* Controllers */,
 				56283C9922122CE100215E87 /* Extensions */,
 				56283C9722122CC900215E87 /* Networking */,
 				56283C9622122CC100215E87 /* SupportFiles */,
@@ -269,6 +254,70 @@
 				56C8B5F7221254BF0095D8DF /* APIError.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		56C8B60E2213AB2A0095D8DF /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				56C8B6392213AC290095D8DF /* ListCounter */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		56C8B6392213AC290095D8DF /* ListCounter */ = {
+			isa = PBXGroup;
+			children = (
+				56C8B64E2213AC8E0095D8DF /* Interactor */,
+				56C8B6482213AC8E0095D8DF /* Presenter */,
+				56C8B64A2213AC8E0095D8DF /* Protocols */,
+				56C8B64C2213AC8E0095D8DF /* Router */,
+				56C8B6502213AC8E0095D8DF /* View */,
+			);
+			path = ListCounter;
+			sourceTree = "<group>";
+		};
+		56C8B6482213AC8E0095D8DF /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				56C8B6492213AC8E0095D8DF /* ListCounterPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		56C8B64A2213AC8E0095D8DF /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				56C8B64B2213AC8E0095D8DF /* ListCounterProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		56C8B64C2213AC8E0095D8DF /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				56C8B64D2213AC8E0095D8DF /* ListCounterRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		56C8B64E2213AC8E0095D8DF /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				56C8B64F2213AC8E0095D8DF /* ListCounterInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		56C8B6502213AC8E0095D8DF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				56C8B6512213AC8E0095D8DF /* ListCounterViewController.swift */,
+				56CB9E0E22130C8400CE5E85 /* ListCounterViewCell.swift */,
+				56CB9E0C22130A4A00CE5E85 /* ListCounterViewCell.xib */,
+				56CB9E15221354BF00CE5E85 /* ListCounterFooterView.swift */,
+				56CB9E132213548F00CE5E85 /* ListCounterFooterView.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		56CB9E1022132AD000CE5E85 /* Helpers */ = {
@@ -418,23 +467,26 @@
 				56CB9E1222132ADF00CE5E85 /* Helpers.swift in Sources */,
 				56C8B6012212680C0095D8DF /* AddCounter.swift in Sources */,
 				56C8B6072212683F0095D8DF /* DeleteCounter.swift in Sources */,
-				56C8B5EA22123A3F0095D8DF /* URLRequest+Extension.swift in Sources */,
 				56C8B5E8221238C20095D8DF /* HTTPMethod.swift in Sources */,
 				56C8B5F8221254BF0095D8DF /* APIError.swift in Sources */,
 				56C8B5FB22125D6F0095D8DF /* String+Extension.swift in Sources */,
-				56C8B60D22127E710095D8DF /* ListCountersViewController.swift in Sources */,
 				5685904522122C2400D88930 /* AppDelegate.swift in Sources */,
 				56C8B5F4221254830095D8DF /* Result.swift in Sources */,
+				56C8B6552213AC8E0095D8DF /* ListCounterRouter.swift in Sources */,
 				56C8B603221268260095D8DF /* IncreaseCounter.swift in Sources */,
+				56C8B6572213AC8E0095D8DF /* ListCounterViewController.swift in Sources */,
 				56C8B60B221276AD0095D8DF /* Encoder.swift in Sources */,
 				56C8B609221268710095D8DF /* Counter.swift in Sources */,
 				56C8B5E6221236130095D8DF /* APIRequest.swift in Sources */,
 				56C8B5F6221254970095D8DF /* DataContainer.swift in Sources */,
 				56CB9E16221354BF00CE5E85 /* ListCounterFooterView.swift in Sources */,
+				56C8B6532213AC8E0095D8DF /* ListCounterPresenter.swift in Sources */,
+				56C8B6562213AC8E0095D8DF /* ListCounterInteractor.swift in Sources */,
 				56C8B5FF221267F80095D8DF /* GetCounters.swift in Sources */,
 				56283C9D22122D4B00215E87 /* Constants.swift in Sources */,
 				56C8B5F2221243E40095D8DF /* APIResponse.swift in Sources */,
 				56CB9E0F22130C8400CE5E85 /* ListCounterViewCell.swift in Sources */,
+				56C8B6542213AC8E0095D8DF /* ListCounterProtocols.swift in Sources */,
 				56C8B605221268300095D8DF /* DecreaseCounter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
