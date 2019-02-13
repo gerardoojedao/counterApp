@@ -34,7 +34,6 @@ extension ListCounterRouter: ListCounterWireframeProtocol {
     func showDialogAddCounter() {
         
         let alert = UIAlertController(title: Constants.Alert.titleAdddCounter, message: Constants.Alert.messageAdddCounter, preferredStyle: .alert)
-        
         let cancelAction = UIAlertAction(title: Constants.Alert.titleBtnCancel, style: .cancel, handler: nil)
         let confirmAction = UIAlertAction(title: Constants.Alert.titleBtnConfirm, style: .default) { (action) in
             if let textfield = alert.textFields?[0], let title = textfield.text, !title.isEmpty {
@@ -45,6 +44,8 @@ extension ListCounterRouter: ListCounterWireframeProtocol {
         confirmAction.isEnabled = false
         
         alert.addTextField { (textfield) in
+            
+            textfield.accessibilityIdentifier = "textfieldNewCounter"
             
             NotificationCenter.default.addObserver(forName: .UITextFieldTextDidChange, object: textfield, queue: OperationQueue.main, using:
                 {_ in

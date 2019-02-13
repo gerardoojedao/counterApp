@@ -41,6 +41,7 @@ class ListCounterViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.allowsSelection = false
+        tableView.accessibilityIdentifier = "table"
         tableView.register(UINib(nibName: ListCounterViewCell.cellIdentifier, bundle: nil), forCellReuseIdentifier: ListCounterViewCell.cellIdentifier)
         tableView.register(UINib(nibName: ListCounterFooterView.cellIdentifier, bundle: nil), forHeaderFooterViewReuseIdentifier: ListCounterFooterView.cellIdentifier)
         self.view.addSubview(self.tableView)
