@@ -40,8 +40,6 @@ class ListCountersViewController: UIViewController {
         editBarBtn = UIBarButtonItem(title: Constants.BarButton.titleEdit.localized(), style: .plain, target: self, action: #selector(editCountersTapped(_:)))
         addBarBtn = UIBarButtonItem(title: Constants.BarButton.titleAdd.localized(), style: .plain, target: self, action: #selector(addNewCounterTapped(_:)))
         doneBarBtn = UIBarButtonItem(title: Constants.BarButton.titleDone.localized(), style: .done, target: self, action: #selector(doneEditListTapped(_:)))
-        self.navigationItem.leftBarButtonItem = editBarBtn
-        self.navigationItem.rightBarButtonItem = addBarBtn
     }
     
     func setUpTableView() {
